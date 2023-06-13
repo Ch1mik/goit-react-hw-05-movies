@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { searchMoviesByKeyWord } from "components/API/getMovies";
-// import { Link } from "../../SharedLayout.styled";
 
 const Movies = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -26,7 +25,7 @@ const Movies = () => {
 
   const handleSearchSubmit = e => {
     e.preventDefault();
-    navigate(`/movie?query=${searchQuery}`);
+    navigate(`/movies?query=${searchQuery}`);
   };
 
   return (

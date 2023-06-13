@@ -2,7 +2,7 @@ import Reviews from "./Reviews/Reviews"
 import Cast from "./Cast/Cast"
 import { useState, useEffect, Suspense } from 'react';
 import { getMovieDetails } from "components/API/getMovies"; 
-import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
+import { useParams, Outlet, useNavigate } from 'react-router-dom';
 import ListMoviesDetails from "./ListMoviesDetails";
 
 export default function MoviesDetails() {
@@ -10,8 +10,7 @@ export default function MoviesDetails() {
   const [movie, setMovie] = useState({});
   const [loading, setLoading] = useState(false);
   const [genres, setGenres] = useState([]);
-  const location = useLocation();
-  const backLink = location?.state?.from ?? '/';
+  const navigate = useNavigate()
 
   useEffect(() => {
     async function fetchMovie() {
@@ -32,14 +31,14 @@ export default function MoviesDetails() {
   return (
     <>
       {loading && <h3>Loading movies....</h3>}
-      <Link to={backLink}>Go back</Link>
+      <button onClick={() => {navigate(-1)}}>Go back</button>
       {movie && <ListMoviesDetails genres={genres} movie={movie} />}
       <section>
         <h3>Additional information</h3>
-        <div >
-          <Reviews />
-          <Cast />
-        </div>
+        <ul >
+          <li><Reviews /></li>
+          <li><Cast /></li>
+        </ul>
       </section>
       <Suspense fallback={null}>
         <Outlet />

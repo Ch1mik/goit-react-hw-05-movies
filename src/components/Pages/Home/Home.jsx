@@ -2,7 +2,6 @@ import { getTrendingMovies } from "components/API/getMovies"
 import { useEffect, useState } from "react"
 import { Link, useLocation } from "react-router-dom";
 // import { Link } from "../../SharedLayout.styled";
-
 const Home = () => { 
     const [movies, setMovies] = useState([]);
     const location = useLocation();
